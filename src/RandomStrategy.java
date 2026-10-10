@@ -1,7 +1,15 @@
 import java.util.Random;
 
+/**
+ * RandomStrategy.java - Random strategy implementation
+ */
 public class RandomStrategy implements Strategy
 {
+    /**
+     * Random strategy - randomly choose a move
+     * @param playerMove - the player's move
+     * @return - the computer's move
+     */
     @Override
     public String getMove(String playerMove)
     {

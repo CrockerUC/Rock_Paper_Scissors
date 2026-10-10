@@ -3,6 +3,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * RockPaperScissorsFrame.java - GUI frame
+ */
 public class RockPaperScissorsFrame extends JFrame
 {
     JButton rockBtn, paperBtn, scissorsBtn, quitBtn;
@@ -20,10 +23,18 @@ public class RockPaperScissorsFrame extends JFrame
     CheatStrategy cheat = new CheatStrategy();
     RandomStrategy random = new RandomStrategy();
 
+    /**
+     * MostUsedStrategy.java - Most Used strategy implementation
+     */
     class MostUsedStrategy implements Strategy
     {
+        /**
+         * Most used strategy - always play the move that has the most wins
+         * @param playerMove - the player's move
+         * @return - the computer's move
+         */
         @Override
-        public String getMove(String compMove)
+        public String getMove(String playerMove)
         {
             int max = Math.max(playRock, Math.max(playPaper, playScissors));
             if (playRock == max)
@@ -35,8 +46,16 @@ public class RockPaperScissorsFrame extends JFrame
         }
     }
 
+    /**
+     * LeastUsedStrategy.java - Least Used strategy implementation
+     */
     class LeastUsedStrategy implements Strategy
     {
+        /**
+         * Least used strategy - always play the move that has the least wins
+         * @param playerMove - the player's move
+         * @return - the computer's move
+         */
         @Override
         public String getMove(String playerMove)
         {
@@ -55,8 +74,16 @@ public class RockPaperScissorsFrame extends JFrame
 
     MostUsedStrategy mostUsed = new MostUsedStrategy();
 
+    /**
+     * LastUsedStrategy.java - Last Used strategy implementation
+     */
     class LastUsedStrategy implements Strategy
     {
+        /**
+         * Last used strategy - always play the move that was last played
+         * @param playerMove - the player's move
+         * @return - the computer's move
+         */
         @Override
         public String getMove(String playerMove)
         {
@@ -69,6 +96,9 @@ public class RockPaperScissorsFrame extends JFrame
     }
     LastUsedStrategy lastUsed = new LastUsedStrategy();
 
+    /**
+     * RockPaperScissorsFrame.java - GUI frame constructor
+     */
     public RockPaperScissorsFrame()
     {
         super("Rock Paper Scissors Game");
@@ -93,6 +123,9 @@ public class RockPaperScissorsFrame extends JFrame
         setVisible(true);
     }
 
+    /**
+     * Creates the button panel and adds the buttons to it
+     */
     private void createButtonPanel()
     {
         buttonPnl = new JPanel();
@@ -149,6 +182,9 @@ public class RockPaperScissorsFrame extends JFrame
         buttonPnl.add(quitBtn);
     }
 
+    /**
+     * Creates the stats panel and adds the labels and text fields to it
+     */
     private void createStatsPanel()
     {
         statsPnl = new JPanel();
@@ -176,6 +212,9 @@ public class RockPaperScissorsFrame extends JFrame
         statsPnl.add(tiesTf);
     }
 
+    /**
+     * Creates the display panel and adds the text area to it
+     */
     private void createDisplayPanel()
     {
         displayPnl = new JPanel();
@@ -188,6 +227,11 @@ public class RockPaperScissorsFrame extends JFrame
         displayPnl.add(resultsScroller);
     }
 
+    /**
+     * Gets the computer's move based on the player's move and the strategy
+     * @param playerMove - the player's move
+     * @return - the computer's move
+     */
     public String getCompMove(String playerMove)
     {
         java.util.Random rnd = new java.util.Random();
@@ -240,6 +284,10 @@ public class RockPaperScissorsFrame extends JFrame
         return compMove;
     }
 
+    /**
+     * Resolves the move based on the player's move and the computer's move and updates the stats panel with the results
+     * @param playerMove
+     */
     public void resolveMove(String playerMove)
     {
         String compMove = getCompMove(playerMove);
@@ -316,6 +364,11 @@ public class RockPaperScissorsFrame extends JFrame
         lastCompMove = compMove;
     }
 
+    /**
+     * Resizes the icon to 75x75 pixels and returns it as an ImageIcon object
+     * @param fileName - the file name of the icon to resize
+     * @return - the resized ImageIcon object
+     */
     private ImageIcon resizeIcon(String fileName)
     {
         ImageIcon original = new ImageIcon(fileName);

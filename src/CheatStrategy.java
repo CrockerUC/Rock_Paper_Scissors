@@ -1,5 +1,13 @@
+/**
+ * CheatStrategy.java - Cheat strategy
+ */
 public class CheatStrategy implements Strategy
 {
+    /**
+     * Cheat strategy - always play the move that beats the player's move
+     * @param playerMove - the player's move
+     * @return - the computer's move
+     */
     @Override
     public String getMove(String playerMove)
     {
